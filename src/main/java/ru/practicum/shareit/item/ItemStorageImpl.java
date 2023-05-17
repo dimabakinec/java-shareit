@@ -25,34 +25,6 @@ public class ItemStorageImpl implements ItemStorage {
     private final Map<Long, Set<Long>> listItemsByIdUser = new HashMap<>();
     private long countId = 0L;
 
-    private void validation(long userId, long itemId) {
-        Item item = items.get(itemId);
-        if (item.getOwner() != userId) {
-            log.error(INVALID_USER_ID.getMessage(), userId);
-            throw new NotFoundException(INVALID_USER_ID.getMessage() + userId);
-        }
-    }
-
-    private void validationContainItem(long id) {
-        if (!items.containsKey(id)) {
-            log.error(MODEL_NOT_FOUND.getMessage() + id);
-            throw new NotFoundException(MODEL_NOT_FOUND.getMessage() + id);
-        }
-    }
-
-    private void dataValidator(String name) {
-        if (name.isEmpty()) {
-            log.error(NAME_MAY_NOT_CONTAIN_SPACES.getMessage());
-            throw new ValidationException(NAME_MAY_NOT_CONTAIN_SPACES.getMessage());
-        }
-    }
-
-    private void addItemToList(long id, Item item) {
-        Set<Long> itemList = listItemsByIdUser.getOrDefault(id, new HashSet<>());
-        itemList.add(item.getId());
-        listItemsByIdUser.put(id, itemList);
-    }
-
     @Override
     public Collection<ItemDto> getAllItemsByIdUser(long userId) {
         userStorage.findById(userId);
@@ -117,5 +89,33 @@ public class ItemStorageImpl implements ItemStorage {
         addItemToList(userId, item);
         items.put(itemId, item);
         return ItemMapper.toItemDto(item);
+    }
+
+    private void validation(long userId, long itemId) {
+        Item item = items.get(itemId);
+        if (item.getOwner() != userId) {
+            log.error(INVALID_USER_ID.getMessage(), userId);
+            throw new NotFoundException(INVALID_USER_ID.getMessage() + userId);
+        }
+    }
+
+    private void validationContainItem(long id) {
+        if (!items.containsKey(id)) {
+            log.error(MODEL_NOT_FOUND.getMessage() + id);
+            throw new NotFoundException(MODEL_NOT_FOUND.getMessage() + id);
+        }
+    }
+
+    private void dataValidator(String name) {
+        if (name.isEmpty()) {
+            log.error(NAME_MAY_NOT_CONTAIN_SPACES.getMessage());
+            throw new ValidationException(NAME_MAY_NOT_CONTAIN_SPACES.getMessage());
+        }
+    }
+
+    private void addItemToList(long id, Item item) {
+        Set<Long> itemList = listItemsByIdUser.getOrDefault(id, new HashSet<>());
+        itemList.add(item.getId());
+        listItemsByIdUser.put(id, itemList);
     }
 }
