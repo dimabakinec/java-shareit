@@ -42,14 +42,15 @@ public class ItemStorageImpl implements ItemStorage {
 
     @Override
     public Collection<ItemDto> searchItem(long userId, String text) {
+        String lowerQuery = text.toLowerCase();
         userStorage.findById(userId);
         if (text.isEmpty()) {
             return Collections.emptyList();
         }
         return items.values().stream()
                 .filter(item -> item.getAvailable() &&
-                        (item.getName().toLowerCase().contains(text.toLowerCase()) ||
-                                item.getDescription().toLowerCase().contains(text.toLowerCase())))
+                        (item.getName().toLowerCase().contains(lowerQuery) ||
+                                item.getDescription().toLowerCase().contains(lowerQuery)))
                 .map(ItemMapper::toItemDto)
                 .collect(Collectors.toList());
     }
