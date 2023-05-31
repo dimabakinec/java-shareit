@@ -1,23 +1,29 @@
 package ru.practicum.shareit.item.dto;
 
 import lombok.*;
-import ru.practicum.shareit.item.Create;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * TODO Sprint add-controllers.
+ */
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class ItemDto {
 
-    private Long id;
-    @NotBlank(groups = {Create.class})
-    private String name;
-    @NotBlank(groups = {Create.class})
-    private String description;
-    @NotNull(groups = {Create.class})
-    private Boolean available;
+    private Long id; // уникальный идентификатор вещи;
+
+    @NotBlank
+    private String name; // краткое название;
+
+    @NotBlank
+    private String description; // развёрнутое описание;
+
+    @NotNull
+    private Boolean available; // статус о том, доступна или нет вещь для аренды
 }
