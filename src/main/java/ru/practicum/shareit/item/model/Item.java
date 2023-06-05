@@ -1,19 +1,19 @@
 package ru.practicum.shareit.item.model;
 
 import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
+//import org.hibernate.annotations.DynamicUpdate;
 import ru.practicum.shareit.request.ItemRequest;
 import ru.practicum.shareit.user.model.User;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "items")
-@ToString
 @Getter
 @Setter
-@EqualsAndHashCode
-@DynamicUpdate
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "items", schema = "public")
+@NoArgsConstructor
 public class Item {
 
     @Id
