@@ -15,7 +15,6 @@ import javax.persistence.*;
 @ToString
 @Getter
 @Setter
-//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
