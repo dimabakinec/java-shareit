@@ -27,7 +27,7 @@ public class BookingDto {
     @AllArgsConstructor
     public static class User {
         private Long id;
-        private String name;
+//        private String name;
     }
 
     @Getter
