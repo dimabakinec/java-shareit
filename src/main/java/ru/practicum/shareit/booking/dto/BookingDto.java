@@ -20,12 +20,12 @@ public class BookingDto {
     private LocalDateTime end; // дата и время конца бронирования;
     private BookingStatus status; // статус бронирования.
     private Item item; // вещь, которую пользователь бронирует;
-    private User user; // пользователь, который осуществляет бронирование;
+    private Booker booker; // пользователь, который осуществляет бронирование;
 
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class User {
+    public static class Booker {
         private Long id;
 //        private String name;
     }
