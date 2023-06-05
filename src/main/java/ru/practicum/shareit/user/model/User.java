@@ -12,9 +12,10 @@ import javax.persistence.*;
                 @UniqueConstraint(name = "user_email_unique", columnNames = "email")
         }
 )
+@ToString
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
