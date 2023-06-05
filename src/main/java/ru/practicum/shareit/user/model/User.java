@@ -1,9 +1,6 @@
 package ru.practicum.shareit.user.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -15,11 +12,13 @@ import javax.persistence.*;
                 @UniqueConstraint(name = "user_email_unique", columnNames = "email")
         }
 )
-@ToString
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamicUpdate
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
 
     @Id
