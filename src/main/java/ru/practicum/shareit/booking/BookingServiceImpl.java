@@ -34,31 +34,6 @@ public class BookingServiceImpl implements BookingService {
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
 
-    private User validUserById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + userId));
-    }
-
-    private Item validItemById(Long itemId) {
-         return itemRepository.findById(itemId)
-                 .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + itemId));
-    }
-
-    private void validStartEndEndDate(BookingDtoRequest bookingDtoRequest) {
-        if (bookingDtoRequest.getEnd().isBefore(bookingDtoRequest.getStart())) {
-            throw new ValidationException(INVALID_DATE.getMessage());
-        }
-        if (bookingDtoRequest.getEnd().isEqual(bookingDtoRequest.getStart())) {
-            throw new ValidationException(INVALID_DATE.getMessage());
-        }
-        List<Booking> bookingList = bookingRepository.getBookingDate(bookingDtoRequest.getItemId(),
-                bookingDtoRequest.getStart(), bookingDtoRequest.getEnd());
-        if (bookingList.size() > 0) {
-            throw new ValidationException(INVALID_DATE.getMessage());
-        }
-
-    }
-
     @Transactional
     @Override
     public BookingDto addNewBooking(Long userId, BookingDtoRequest bookingDtoRequest) {
@@ -170,5 +145,30 @@ public class BookingServiceImpl implements BookingService {
         return bookingList.stream()
                 .map(BookingMapper::mapToBookingDto)
                 .collect(Collectors.toList());
+    }
+
+    private User validUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + userId));
+    }
+
+    private Item validItemById(Long itemId) {
+        return itemRepository.findById(itemId)
+                .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + itemId));
+    }
+
+    private void validStartEndEndDate(BookingDtoRequest bookingDtoRequest) {
+        if (bookingDtoRequest.getEnd().isBefore(bookingDtoRequest.getStart())) {
+            throw new ValidationException(INVALID_DATE.getMessage());
+        }
+        if (bookingDtoRequest.getEnd().isEqual(bookingDtoRequest.getStart())) {
+            throw new ValidationException(INVALID_DATE.getMessage());
+        }
+        List<Booking> bookingList = bookingRepository.getBookingDate(bookingDtoRequest.getItemId(),
+                bookingDtoRequest.getStart(), bookingDtoRequest.getEnd());
+        if (bookingList.size() > 0) {
+            throw new ValidationException(INVALID_DATE.getMessage());
+        }
+
     }
 }
