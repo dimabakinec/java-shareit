@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingDtoRequest;
 import ru.practicum.shareit.booking.model.Booking;
-import ru.practicum.shareit.item.dto.ItemDtoResponse;
 import ru.practicum.shareit.item.model.Item;
-import ru.practicum.shareit.user.dto.UserDtoResponse;
 import ru.practicum.shareit.user.model.User;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -28,8 +26,8 @@ public class BookingMapper {
                 booking.getStart(),
                 booking.getEnd(),
                 booking.getStatus(),
-                new ItemDtoResponse(booking.getItem().getId(), booking.getItem().getName()),
-                new UserDtoResponse(booking.getBooker().getId())
+                new BookingDto.Item(booking.getItem().getId(), booking.getItem().getName()),
+                new BookingDto.User(booking.getBooker().getId(), booking.getBooker().getName())
                 );
     }
 }
