@@ -8,10 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
-/**
- * TODO Sprint add-controllers.
- */
-
 @Entity
 @Table(
         name = "users",

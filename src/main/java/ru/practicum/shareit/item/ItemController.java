@@ -13,9 +13,6 @@ import java.util.Collection;
 
 import static ru.practicum.shareit.utils.Message.*;
 
-/**
- * TODO Sprint add-controllers.
- */
 @RestController
 @RequestMapping("/items")
 @RequiredArgsConstructor
