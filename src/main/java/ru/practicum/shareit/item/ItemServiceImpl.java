@@ -78,12 +78,10 @@ public class ItemServiceImpl implements ItemService {
     public ItemInfo getItem(long userId, long itemId) {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + itemId));
-        List<Booking> bookingList = new ArrayList<>();
-
+        List<Booking> bookingList = Collections.<Booking>emptyList();
         if (item.getOwner().getId() == userId) {
             bookingList = bookingRepository.findByItemIdAndStatus(itemId,
                     BookingStatus.APPROVED, Sort.by(Sort.Direction.ASC, "start"));
-
         }
 
         List<Comment> comments = commentRepository.findByItemIdOrderByCreatedAsc(itemId);
