@@ -49,8 +49,8 @@ class BookingControllerTest {
             request.getStart(),
             request.getEnd(),
             BookingStatus.WAITING,
-            new ItemDtoResponse(1L, "Щётка для обуви"),
-            new UserDtoResponse(userId)
+            new BookingDto.ItemDtoResponse(1L, "Щётка для обуви"),
+            new BookingDto.UserDtoResponse(userId)
     );
 
     @Test
