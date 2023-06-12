@@ -47,8 +47,8 @@ class ItemServiceImplIntegrationTest {
         userResult = userRepository.save(user);
 
         Item item = new Item();
-        item.setName("Brush for footwear");
-        item.setDescription("Standard brush for footwear");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(userResult);
         itemResult = itemRepository.save(item);

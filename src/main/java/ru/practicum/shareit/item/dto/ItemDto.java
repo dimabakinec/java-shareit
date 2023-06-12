@@ -5,6 +5,10 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * TODO Sprint add-controllers.
+ */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,4 +26,5 @@ public class ItemDto {
 
     @NotNull
     private Boolean available; // статус о том, доступна или нет вещь для аренды
+    private Long requestId; // id запроса (заполняется только если вещь создана по запросу).
 }

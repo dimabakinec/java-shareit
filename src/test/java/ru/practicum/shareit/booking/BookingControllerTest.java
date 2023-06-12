@@ -49,7 +49,7 @@ class BookingControllerTest {
             request.getStart(),
             request.getEnd(),
             BookingStatus.WAITING,
-            new ItemDtoResponse(1L, "Brush for footwear"),
+            new ItemDtoResponse(1L, "Щётка для обуви"),
             new UserDtoResponse(userId)
     );
 

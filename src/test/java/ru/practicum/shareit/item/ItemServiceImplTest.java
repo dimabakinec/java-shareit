@@ -77,8 +77,8 @@ class ItemServiceImplTest {
 
         item = new Item();
         item.setId(1L);
-        item.setName("Brush for footwear");
-        item.setDescription("Standard brush for footwear");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(user);
 
@@ -98,8 +98,8 @@ class ItemServiceImplTest {
         comment.setCreated(LocalDateTime.of(2023, 5, 22, 1, 34, 1));
 
         itemDto = new ItemDto();
-        itemDto.setName("Brush for footwear");
-        itemDto.setDescription("Standard brush for footwear");
+        itemDto.setName("Щётка для обуви");
+        itemDto.setDescription("Стандартная щётка для обуви");
         itemDto.setAvailable(true);
     }
 
@@ -179,7 +179,7 @@ class ItemServiceImplTest {
     @Test
     void searchWhenItemFoundThenReturnedItemList() {
         long userId = 1L;
-        String text = "brush";
+        String text = "щетка";
         Integer from = 0;
         Integer size = 5;
         List<Item> list = List.of(item);
@@ -196,7 +196,7 @@ class ItemServiceImplTest {
     @Test
     void searchWhenItemNotFoundThenReturnedEmptyItemList() {
         long userId = 1L;
-        String text = "brush";
+        String text = "щетка";
         Integer from = 0;
         Integer size = 5;
         PageRequest page = PageRequest.of(from > 0 ? from / size : 0, size);

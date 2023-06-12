@@ -42,14 +42,14 @@ class ItemRequestControllerTest {
     private final LocalDateTime created = LocalDateTime.now();
     private final ItemRequestDto requestDto = new ItemRequestDto(
             1L,
-            "Would like to use a shoe brush",
+            "Хотел бы воспользоваться щёткой для обуви",
             created
     );
 
     private final ItemDto itemDto = new ItemDto(
             5L,
-            "Brush for footwear",
-            "Standard brush for footwear",
+            "Щётка для обуви",
+            "Стандартная щётка для обуви",
             true,
             1L
     );
@@ -58,7 +58,7 @@ class ItemRequestControllerTest {
 
     private final ItemRequestInfo requestInfo = new ItemRequestInfo(
             1L,
-            "Would like to use a shoe brush",
+            "Хотел бы воспользоваться щёткой для обуви",
             LocalDateTime.now(),
             itemDtoSet
     );

@@ -1,9 +1,16 @@
 package ru.practicum.shareit.user.model;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+
+/**
+ * TODO Sprint add-controllers.
+ */
 
 @Entity
 @Table(
@@ -15,10 +22,8 @@ import javax.persistence.*;
 @ToString
 @Getter
 @Setter
+//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamicUpdate
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class User {
 
     @Id

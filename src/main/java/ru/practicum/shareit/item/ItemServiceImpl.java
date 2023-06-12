@@ -2,6 +2,7 @@ package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,8 @@ import ru.practicum.shareit.item.dto.ItemInfo;
 import ru.practicum.shareit.item.mapper.ItemMapper;
 import ru.practicum.shareit.item.model.Comment;
 import ru.practicum.shareit.item.model.Item;
+import ru.practicum.shareit.request.ItemRequestRepository;
+import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.user.UserRepository;
 import ru.practicum.shareit.user.model.User;
 
@@ -39,22 +42,17 @@ public class ItemServiceImpl implements ItemService {
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
     private final CommentRepository commentRepository;
+    private final ItemRequestRepository requestRepository;
 
     private User validUser(Long id) {
         return userRepository.findById(id).stream().findAny()
                 .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + id));
     }
 
-    private void dataValidator(String name) {
-        if (name.isEmpty()) {
-            log.error(NAME_MAY_NOT_CONTAIN_SPACES.getMessage());
-            throw new ValidationException(NAME_MAY_NOT_CONTAIN_SPACES.getMessage());
-        }
-    }
-
     @Override
-    public Collection<ItemInfo> getAllItemsByIdUser(long userId) {
-        Map<Long, Item> itemMap = itemRepository.findByOwnerId(userId)
+    public Collection<ItemInfo> getAllItemsByIdUser(long userId, Integer from, Integer size) {
+        PageRequest page = PageRequest.of(from > 0 ? from / size : 0, size);
+        Map<Long, Item> itemMap = itemRepository.findByOwnerId(userId, page)
                 .stream()
                 .collect(Collectors.toMap(Item::getId, Function.identity()));
         Map<Long, List<Booking>> bookingMap = bookingRepository.findByItemIdIn(itemMap.keySet(),
@@ -78,10 +76,12 @@ public class ItemServiceImpl implements ItemService {
     public ItemInfo getItem(long userId, long itemId) {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + itemId));
+//        List<Booking> bookingList = new ArrayList<>();
         List<Booking> bookingList = Collections.<Booking>emptyList();
         if (item.getOwner().getId() == userId) {
             bookingList = bookingRepository.findByItemIdAndStatus(itemId,
                     BookingStatus.APPROVED, Sort.by(Sort.Direction.ASC, "start"));
+
         }
 
         List<Comment> comments = commentRepository.findByItemIdOrderByCreatedAsc(itemId);
@@ -90,13 +90,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Collection<ItemDto> search(long userId, String text) {
+    public Collection<ItemDto> search(long userId, String text, Integer from, Integer size) {
         validUser(userId);
+        PageRequest page = PageRequest.of(from > 0 ? from / size : 0, size);
         if (text.isEmpty()) {
             return Collections.emptyList();
         }
 
-        return itemRepository.search(text).stream()
+        return itemRepository.search(text, page).stream()
                 .map(ItemMapper::toItemDto)
                 .collect(toList());
     }
@@ -105,8 +106,13 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDto create(long userId, ItemDto itemDto) {
         User user = validUser(userId);
-        dataValidator(itemDto.getName());
-        Item item = itemRepository.save(toNewItem(user, itemDto));
+        Long requestId = itemDto.getRequestId();
+        ItemRequest request = null;
+        if (requestId != null) {
+            request = requestRepository.findById(requestId)
+                    .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + requestId));
+        }
+        Item item = itemRepository.save(toNewItem(user, itemDto, request));
         log.info(ADD_MODEL.getMessage(), item);
         return toItemDto(item);
     }
@@ -114,7 +120,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     @Override
     public ItemDto update(long userId, long itemId, ItemDto itemDto) {
-        User user = validUser(userId);
+        validUser(userId);
         Item item = itemRepository.findByIdAndOwnerId(itemId, userId)
                 .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + itemId));
         String name = itemDto.getName();
@@ -125,7 +131,6 @@ public class ItemServiceImpl implements ItemService {
             item.setDescription(description);
         }
         if (name != null) {
-            dataValidator(name);
             item.setName(name);
         }
         if (available != null) {

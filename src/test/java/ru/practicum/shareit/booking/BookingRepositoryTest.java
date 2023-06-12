@@ -46,14 +46,14 @@ class BookingRepositoryTest {
         user.setEmail("user@user.com");
 
         item = new Item();
-        item.setName("Brush for footwear");
-        item.setDescription("Standard shoe brush");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(user);
 
         item2 = new Item();
-        item2.setName("Paint for shoes");
-        item2.setDescription("Standard shoe paint");
+        item2.setName("Краска для обуви");
+        item2.setDescription("Стандартная краска для обуви");
         item2.setAvailable(true);
         item2.setOwner(user);
 
@@ -120,8 +120,8 @@ class BookingRepositoryTest {
         List<Booking> bookingList = repository.findByBookerIdAndCurrentMomentBetweenStartAndEnd(userBooker.getId(),
                 LocalDateTime.of(2023, 5, 22, 3, 34, 1), page).getContent();
 
-        assertEquals(1, bookingList.size(), "List size is not 1");
-        assertEquals(booking.getId(), bookingList.get(0).getId(), "Values are not equal");
+        assertEquals(1, bookingList.size(), "Размер списка не равен 1");
+        assertEquals(booking.getId(), bookingList.get(0).getId(), "Значения не равны");
     }
 
     @Test
@@ -137,8 +137,8 @@ class BookingRepositoryTest {
         List<Booking> bookingList = repository.findByItemOwnerIdAndCurrentMomentBetweenStartAndEnd(user.getId(),
                 LocalDateTime.of(2023, 5, 22, 3, 34, 1), page).getContent();
 
-        assertEquals(1, bookingList.size(), "List size is not 1");
-        assertEquals(booking.getId(), bookingList.get(0).getId(), "Values are not equal");
+        assertEquals(1, bookingList.size(), "Размер списка не равен 1");
+        assertEquals(booking.getId(), bookingList.get(0).getId(), "Значения не равны");
     }
 
     @Test
@@ -155,8 +155,8 @@ class BookingRepositoryTest {
                 LocalDateTime.of(2023, 5, 21, 1, 34, 1),
                 LocalDateTime.of(2023, 5, 25, 1, 34, 1));
 
-        assertEquals(1, bookingList.size(), "List size is not 1");
-        assertEquals(booking.getId(), bookingList.get(0).getId(), "Values are not equal");
+        assertEquals(1, bookingList.size(), "Размер списка не равен 1");
+        assertEquals(booking.getId(), bookingList.get(0).getId(), "Значения не равны");
     }
 
     @Test

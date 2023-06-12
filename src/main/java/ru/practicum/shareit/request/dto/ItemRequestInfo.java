@@ -4,24 +4,20 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.practicum.shareit.item.dto.ItemDto;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-
-/**
- * TODO Sprint add-item-requests.
- */
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ItemRequestDto {
+@AllArgsConstructor
+public class ItemRequestInfo {
 
     private Long id; // уникальный идентификатор запроса;
-
-    @NotBlank
     private String description; // текст запроса, содержащий описание требуемой вещи;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime created;
+    private LocalDateTime created; // дата и время создания запроса.
+    private Set<ItemDto> items = new HashSet<>();
 }

@@ -43,7 +43,8 @@ public class UserServiceImpl implements UserService {
             user.setName(userDto.getName());
         }
 
-        return toUserDto(userRepository.save(user));
+        userRepository.save(user);
+        return toUserDto(user);
     }
 
     @Override

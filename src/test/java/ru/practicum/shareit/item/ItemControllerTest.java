@@ -42,8 +42,8 @@ class ItemControllerTest {
     private final Long userId = 1L;
     private final ItemDto itemDto = new ItemDto(
             1L,
-            "Brush for footwear",
-            "Standard shoe brush",
+            "Щётка для обуви",
+            "Стандартная щётка для обуви",
             true,
             userId
     );
@@ -62,8 +62,8 @@ class ItemControllerTest {
     private final Set<CommentDtoResponse> comments = new HashSet<>();
     private final ItemInfo itemInfo = new ItemInfo(
             1L,
-            "Brush for footwear",
-            "Standard shoe brush",
+            "Щётка для обуви",
+            "Стандартная щётка для обуви",
             true,
             lastBooking,
             nextBooking,
@@ -150,8 +150,8 @@ class ItemControllerTest {
 
     @Test
     void updateItemThenStatus200andItemReturned() throws Exception {
-        itemDto.setName("Metal shoe brush");
-        itemDto.setDescription("Standard brush for shoes, metal");
+        itemDto.setName("Щётка для обуви металлическая");
+        itemDto.setDescription("Стандартная щётка для обуви металлическая");
         when(itemService.update(anyLong(), anyLong(), any())).thenReturn(itemDto);
 
         mvc.perform(patch("/items/{itemId}", itemDto.getId())

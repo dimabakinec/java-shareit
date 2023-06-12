@@ -9,11 +9,11 @@ import java.util.Collection;
 
 public interface ItemService {
 
-    Collection<ItemInfo> getAllItemsByIdUser(long userId);
+    Collection<ItemInfo> getAllItemsByIdUser(long userId, Integer from, Integer size);
 
     ItemInfo getItem(long userId, long itemId);
 
-    Collection<ItemDto> search(long userId, String text);
+    Collection<ItemDto> search(long userId, String text, Integer from, Integer size);
 
     ItemDto create(long userId, ItemDto itemDto);
 

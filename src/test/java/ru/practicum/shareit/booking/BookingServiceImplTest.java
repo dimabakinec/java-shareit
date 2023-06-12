@@ -58,8 +58,8 @@ class BookingServiceImplTest {
 
         item = new Item();
         item.setId(1L);
-        item.setName("Brush for footwear");
-        item.setDescription("Standard shoe brush");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(user);
 

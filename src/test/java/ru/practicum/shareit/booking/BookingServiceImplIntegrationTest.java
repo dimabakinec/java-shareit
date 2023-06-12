@@ -53,8 +53,8 @@ class BookingServiceImplIntegrationTest {
         userResult2 = userRepository.save(user2);
 
         Item item = new Item();
-        item.setName("Brush for footwear");
-        item.setDescription("Standard shoe brush");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(userResult1);
         Item itemResult = itemRepository.save(item);

@@ -1,19 +1,22 @@
 package ru.practicum.shareit.item.model;
 
 import lombok.*;
-//import org.hibernate.annotations.DynamicUpdate;
-import ru.practicum.shareit.request.ItemRequest;
+import org.hibernate.annotations.DynamicUpdate;
+import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.user.model.User;
 
 import javax.persistence.*;
 
+/**
+ * TODO Sprint add-controllers.
+ */
+
+@Entity
+@Table(name = "items")
+@ToString
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
-@Entity
-@Table(name = "items", schema = "public")
-@NoArgsConstructor
+@DynamicUpdate
 public class Item {
 
     @Id

@@ -49,8 +49,8 @@ class ItemRepositoryTest {
         userResult2 = userRepository.save(user2);
 
         Item item = new Item();
-        item.setName("Brush for footwear");
-        item.setDescription("Standard brush for footwear");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(false);
         item.setOwner(userResult);
         itemResult = repository.save(item);
@@ -62,8 +62,8 @@ class ItemRepositoryTest {
         requestResult = requestRepository.save(request);
 
         Item item2 = new Item();
-        item2.setName("Paint for shoes");
-        item2.setDescription("Standard paint for shoes");
+        item2.setName("Краска для обуви");
+        item2.setDescription("Стандартная краска для обуви");
         item2.setAvailable(true);
         item2.setOwner(userResult);
         item2.setRequest(requestResult);
@@ -76,17 +76,17 @@ class ItemRepositoryTest {
 
     @Test
     void searchByTextThenReturnedItem() {
-        String text = "paint";
+        String text = "краска";
 
         List<Item> items = repository.search(text, page).toList();
 
-        assertEquals(1, items.size(), "List size is not 1");
-        assertEquals("Paint for shoes", items.get(0).getName(), "Values are not equal");
+        assertEquals(1, items.size(), "Размер списка не равен 1");
+        assertEquals("Краска для обуви", items.get(0).getName(), "Значения не равны");
     }
 
     @Test
     void searchByTextThenReturnedEmptyList() {
-        String text = "drill";
+        String text = "дрель";
 
         List<Item> items = repository.search(text, page).toList();
 
@@ -95,7 +95,7 @@ class ItemRepositoryTest {
 
     @Test
     void searchByTextWhenItemNotAvailableThenReturnedEmptyList() {
-        String text = "brush";
+        String text = "щетка";
 
         List<Item> items = repository.search(text, page).toList();
 

@@ -67,8 +67,8 @@ class ItemRequestServiceImplTest {
         user2.setEmail("user@user.com");
 
         item = new Item();
-        item.setName("Brush for footwear");
-        item.setDescription("Standard brush for footwear");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(user2);
         item.setRequest(request);

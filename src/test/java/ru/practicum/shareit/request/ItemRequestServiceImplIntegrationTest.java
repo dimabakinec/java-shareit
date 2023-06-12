@@ -51,20 +51,20 @@ class ItemRequestServiceImplIntegrationTest {
         resultUser2 = userRepository.save(user2);
 
         ItemRequest request = new ItemRequest();
-        request.setDescription("Brush for footwear");
+        request.setDescription("Щётка для обуви");
         request.setCreated(LocalDateTime.of(2023, 5, 23, 1, 34, 1));
         request.setRequester(resultUser2);
         resultRequest = requestRepository.save(request);
 
         ItemRequest request2 = new ItemRequest();
-        request2.setDescription("Paint for shoes");
+        request2.setDescription("Краска для обуви");
         request2.setCreated(LocalDateTime.of(2023, 5, 23, 1, 34, 1));
         request2.setRequester(userResult);
         requestRepository.save(request2);
 
         Item item = new Item();
-        item.setName("Brush for footwear");
-        item.setDescription("Standard brush for footwear");
+        item.setName("Щётка для обуви");
+        item.setDescription("Стандартная щётка для обуви");
         item.setAvailable(true);
         item.setOwner(userResult);
         item.setRequest(resultRequest);

@@ -11,6 +11,9 @@ import java.util.List;
 
 import static ru.practicum.shareit.utils.Message.*;
 
+/**
+ * TODO Sprint add-controllers.
+ */
 @RestController
 @RequestMapping(path = "/users")
 @RequiredArgsConstructor
