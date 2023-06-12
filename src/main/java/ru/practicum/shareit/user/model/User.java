@@ -1,6 +1,5 @@
 package ru.practicum.shareit.user.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,6 +31,5 @@ public class User {
     private String name; // имя или логин пользователя;
 
     @Column(nullable = false)
-    @EqualsAndHashCode.Include
     private String email; // адрес электронной почты (два пользователя не могут иметь одинаковый адрес электронной почты).
 }
