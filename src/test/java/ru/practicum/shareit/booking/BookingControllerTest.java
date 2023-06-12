@@ -10,8 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingDtoRequest;
 import ru.practicum.shareit.exception.ValidationException;
-//import ru.practicum.shareit.item.dto.ItemDtoResponse;
-//import ru.practicum.shareit.user.dto.UserDtoResponse;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;

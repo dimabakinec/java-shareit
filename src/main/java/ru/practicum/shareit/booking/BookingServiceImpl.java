@@ -170,11 +170,5 @@ public class BookingServiceImpl implements BookingService {
         if (bookingDtoRequest.getEnd().isEqual(bookingDtoRequest.getStart())) {
             throw new ValidationException(INVALID_DATE.getMessage());
         }
-//        List<Booking> bookingList = bookingRepository.getBookingDate(bookingDtoRequest.getItemId(),
-//                bookingDtoRequest.getStart(), bookingDtoRequest.getEnd());
-//        if (bookingList.size() > 0) {
-//            throw new ValidationException(INVALID_DATE.getMessage());
-//        }
-
     }
 }

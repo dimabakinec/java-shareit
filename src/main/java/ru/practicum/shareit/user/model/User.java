@@ -8,10 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
-/**
- * TODO Sprint add-controllers.
- */
-
 @Entity
 @Table(
         name = "users",
@@ -22,7 +18,6 @@ import javax.persistence.*;
 @ToString
 @Getter
 @Setter
-//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamicUpdate
 public class User {
 

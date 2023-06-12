@@ -14,9 +14,6 @@ import java.util.Collection;
 
 import static ru.practicum.shareit.utils.Message.*;
 
-/**
- * TODO Sprint add-bookings.
- */
 @RestController
 @RequestMapping(path = "/bookings")
 @RequiredArgsConstructor

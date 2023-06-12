@@ -3,8 +3,6 @@ package ru.practicum.shareit.booking.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import ru.practicum.shareit.booking.BookingStatus;
-//import ru.practicum.shareit.item.dto.ItemDtoResponse;
-//import ru.practicum.shareit.user.dto.UserDtoResponse;
 
 import java.time.LocalDateTime;
 
