@@ -1,6 +1,8 @@
 package ru.practicum.shareit.user.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -16,9 +18,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @DynamicUpdate
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class User {
 
     @Id
@@ -32,6 +31,5 @@ public class User {
     private String name; // имя или логин пользователя;
 
     @Column(nullable = false)
-    @EqualsAndHashCode.Include
     private String email; // адрес электронной почты (два пользователя не могут иметь одинаковый адрес электронной почты).
 }

@@ -19,20 +19,20 @@ public class BookingDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime end; // дата и время конца бронирования;
     private BookingStatus status; // статус бронирования.
-    private Item item; // вещь, которую пользователь бронирует;
-    private Booker booker; // пользователь, который осуществляет бронирование;
+    private ItemDtoResponse item; // вещь, которую пользователь бронирует;
+    private UserDtoResponse booker; // пользователь, который осуществляет бронирование;
 
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class Booker {
+    public static class UserDtoResponse {
         private Long id;
     }
 
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class Item {
+    public static class ItemDtoResponse {
         private Long id;
         private String name;
     }
