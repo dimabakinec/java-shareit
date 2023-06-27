@@ -2,7 +2,7 @@ package ru.practicum.shareit.request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+//import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
+//import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -79,7 +79,7 @@ class ItemRequestControllerTest {
                 .andExpect(jsonPath("$.id", is(requestDto.getId()), Long.class))
                 .andExpect(jsonPath("$.description", is(requestDto.getDescription())))
                 .andExpect(jsonPath("$.created", is(requestDto.getCreated().format(TIME_FORMATTER))));
-        verify(requestService, Mockito.times(1));
+//        verify(requestService, Mockito.times(1));
     }
 
     @Test
@@ -97,7 +97,7 @@ class ItemRequestControllerTest {
                 .andExpect(jsonPath("$[0].created", is(requestDto.getCreated()
                         .format(TIME_FORMATTER))))
                 .andExpect(jsonPath("$[0].items", hasSize(0)));
-        verify(requestService, Mockito.times(1));
+//        verify(requestService, Mockito.times(1));
     }
 
     @Test
@@ -121,7 +121,7 @@ class ItemRequestControllerTest {
                 .andExpect(jsonPath("$[0].created", is(requestDto.getCreated()
                         .format(TIME_FORMATTER))))
                 .andExpect(jsonPath("$[0].items", hasSize(0)));
-        verify(requestService, Mockito.times(1));
+//        verify(requestService, Mockito.times(1));
     }
 
     @Test
@@ -139,7 +139,7 @@ class ItemRequestControllerTest {
                         .param("size", String.valueOf(size)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
-        verify(requestService, Mockito.times(1));
+//        verify(requestService, Mockito.times(1));
     }
 
     @Test
@@ -162,6 +162,6 @@ class ItemRequestControllerTest {
                 .andExpect(jsonPath("$.items[0].description", is(itemDto.getDescription())))
                 .andExpect(jsonPath("$.items[0].available", is(itemDto.getAvailable())))
                 .andExpect(jsonPath("$.items[0].requestId", is(itemDto.getRequestId()), Long.class));
-        verify(requestService, Mockito.times(1));
+//        verify(requestService, Mockito.times(1));
     }
 }
