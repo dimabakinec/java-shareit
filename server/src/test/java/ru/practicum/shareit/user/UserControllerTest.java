@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.verify;
+//import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -30,13 +30,13 @@ import static ru.practicum.shareit.utils.Message.MODEL_NOT_FOUND;
 class UserControllerTest {
 
     @Autowired
-    private ObjectMapper mapper;
+    ObjectMapper mapper;
 
     @MockBean
-    private UserService userService;
+    UserService userService;
 
     @Autowired
-    private MockMvc mvc;
+    MockMvc mvc;
 
     private UserDto userDto = new UserDto(
             1L,
