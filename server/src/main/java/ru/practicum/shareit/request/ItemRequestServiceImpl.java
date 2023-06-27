@@ -33,11 +33,6 @@ public class ItemRequestServiceImpl implements ItemRequestService {
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
 
-    private User validUser(Long id) {
-        return userRepository.findById(id).stream().findAny()
-                .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + id));
-    }
-
     @Override
     @Transactional
     public ItemRequestDto addNewRequestItem(Long userId, ItemRequestDto requestDto) {
@@ -86,5 +81,10 @@ public class ItemRequestServiceImpl implements ItemRequestService {
                 .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + requestId));
         List<Item> itemList = itemRepository.findByRequestId(requestId);
         return mapToItemRequestInfo(request, itemList);
+    }
+
+    private User validUser(Long id) {
+        return userRepository.findById(id).stream().findAny()
+                .orElseThrow(() -> new NotFoundException(MODEL_NOT_FOUND.getMessage() + id));
     }
 }
