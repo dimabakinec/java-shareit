@@ -2,6 +2,7 @@ package ru.practicum.shareit.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,6 +19,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -28,10 +30,10 @@ import static ru.practicum.shareit.utils.Message.MODEL_NOT_FOUND;
 class UserControllerTest {
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     @MockBean
-    UserService userService;
+    private UserService userService;
 
     @Autowired
     private MockMvc mvc;
@@ -55,6 +57,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
                 .andExpect(jsonPath("$.name", is(userDto.getName())))
                 .andExpect(jsonPath("$.email", is(userDto.getEmail())));
+        verify(userService, Mockito.times(1));
     }
 
     @Test
@@ -74,6 +77,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
                 .andExpect(jsonPath("$.name", is(userDto.getName())))
                 .andExpect(jsonPath("$.email", is(userDto.getEmail())));
+        verify(userService, Mockito.times(1));
     }
 
     @Test
@@ -88,6 +92,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
                 .andExpect(jsonPath("$.name", is(userDto.getName())))
                 .andExpect(jsonPath("$.email", is(userDto.getEmail())));
+        verify(userService, Mockito.times(1));
     }
 
     @Test
@@ -102,6 +107,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$[0].id", is(userDto.getId()), Long.class))
                 .andExpect(jsonPath("$[0].name", is(userDto.getName())))
                 .andExpect(jsonPath("$[0].email", is(userDto.getEmail())));
+        verify(userService, Mockito.times(1));
     }
 
     @Test
@@ -122,5 +128,6 @@ class UserControllerTest {
         mvc.perform(get("/users/{id}", id))
                 .andExpect(status().isNotFound())
                 .andExpect(mvcResult -> mvcResult.getResolvedException().getClass().equals(NotFoundException.class));
+        verify(userService, Mockito.times(1));
     }
 }
