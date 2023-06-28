@@ -28,13 +28,13 @@ import static ru.practicum.shareit.utils.Message.MODEL_NOT_FOUND;
 class UserControllerTest {
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     @MockBean
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    MockMvc mvc;
+    private MockMvc mvc;
 
     private UserDto userDto = new UserDto(
             1L,
