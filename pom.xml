@@ -24,7 +24,7 @@
 		<module>server</module>
 	</modules>
 
-	<dependencyManagement>
+<!--	<dependencyManagement>-->
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -75,7 +75,7 @@
 				<version>2.7.13</version>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
+<!--	</dependencyManagement>-->
 
 	<build>
 		<resources>
